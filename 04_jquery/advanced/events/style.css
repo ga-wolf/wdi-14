@@ -1,0 +1,21 @@
+.dot {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: rebeccapurple;
+}
+
+.pixel {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rebeccapurple;
+}
+
+.animate {
+  width: 200px;
+  height: 50px;
+  position: relative;
+  top: 0px;
+  background-color: #663399;
+}
