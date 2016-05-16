@@ -1,5 +1,7 @@
 var $allLinks = $( "a" );
 
+$('h2').funText(333, 'candy');
+
 var thumbnailify = function ( $link ) {
   var currentHref = $link.attr( "href" );
   var thumbnailUrl = youtube.generateThumbnailUrl( currentHref );
