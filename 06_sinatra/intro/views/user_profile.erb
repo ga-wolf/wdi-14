@@ -1,0 +1,17 @@
+<hr>
+<p>This is in the user_profile.erb file</p>
+
+<p>The result of 2 * 5 is <%= 2 * 5 %></p>
+<%#= "<p>The result of 2 * 5 is #{2 * 5}</p>" %>
+
+<img src="http://fillmurray.com/200/200">
+
+<%= tweets = ["First tweet", "second tweet", "third tweet", "fourth tweet"] %>
+
+<% tweets.each do |tweet| %>
+  <p>
+    <%= tweet %>
+  </p>
+<% end %>
+
+<hr>

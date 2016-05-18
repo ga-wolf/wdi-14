@@ -1,0 +1,25 @@
+<!-- Loaded in place of our yield -->
+<hr>
+<h1>This is our contact page</h1>
+
+<!-- This won't print on the page! But it will evaluate the code -->
+<% 2 + 2 %>
+<!-- This will print the result to the page -->
+<%= 2 + 2 %>
+
+<!-- Create a local variable called emails, so we can use it later on -->
+<% emails = ["gigi@ga.co", "wolf@ga.co", "jack.jeffress@ga.co", "kane.mott@ga.co", "sherif.gamal@ga.co"] %>
+<!-- Print emails out to the screen -->
+<%= emails %>
+
+<ul>
+  <!-- We loop every email, saving the current email as email -->
+  <!-- For each one, we create a new li, with that particular email in it -->
+  <% emails.each do |email| %>
+    <li>
+      <%= email %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>

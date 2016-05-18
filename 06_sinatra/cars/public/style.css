@@ -1,0 +1,12 @@
+body {
+  background: gainsboro;
+}
+
+nav {
+  height: 80px;
+  background: white;
+}
+
+a {
+  color: rebeccapurple;
+}
