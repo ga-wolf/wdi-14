@@ -1,6 +1,6 @@
 <h3>This should show a single animal</h3>
 
-<%#= @animal %>
+<%= @animal %>
 
 <h4>
   <%= @animal["species"] %>
@@ -12,10 +12,16 @@
   <%= @animal["description"] %>
 </p>
 
+<!-- The link may look like this /animals/6/delete -->
 <a href="/animals/<%= @animal["id"] %>/delete">
   Delete this animal
 </a>
 
+<!-- The link may look like this /animals/6/edit -->
 <a href="/animals/<%= @animal["id"] %>/edit">
   Edit this animal
+</a>
+
+<a href="/animals">
+  See all of our animals
 </a>

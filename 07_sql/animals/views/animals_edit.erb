@@ -1,8 +1,11 @@
 <h3>This should edit an animal</h3>
 
+<!-- We need to tell it what method to use, we also need to tell the form the URL -->
 <form method="POST" action="/animals/<%= @animal["id"] %>">
   <p>
     <label>Species: </label>
+    <!-- The name attribute specifies how the value will be stored in params -->
+    <!-- The value attribute specifies the default value -->
     <input type="text" name="species" value="<%= @animal["species"] %>">
   </p>
 
@@ -16,5 +19,6 @@
     <input type="text" name="description" value="<%= @animal["description"] %>">
   </p>
 
+  <!-- Submit the form, in this case it will send a POST request to /animals/:id -->
   <input type="submit" value="Update this animal">
 </form>
