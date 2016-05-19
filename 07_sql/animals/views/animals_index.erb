@@ -1,0 +1,17 @@
+<h3>This should show all of our animals</h3>
+
+<%#= @all_animals %>
+
+<% @all_animals.each do |animal| %>
+  <h4>
+    <%= animal["species"] %>
+  </h4>
+
+  <p>
+    <img src="<%= animal["image"] %>">
+  </p>
+
+  <p>
+    <%= animal["description"] %>
+  </p>
+<% end %>

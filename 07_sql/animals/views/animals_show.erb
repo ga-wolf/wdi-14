@@ -1,0 +1,21 @@
+<h3>This should show a single animal</h3>
+
+<%#= @animal %>
+
+<h4>
+  <%= @animal["species"] %>
+</h4>
+
+<img src="<%= @animal["image"] %>">
+
+<p>
+  <%= @animal["description"] %>
+</p>
+
+<a href="/animals/<%= @animal["id"] %>/delete">
+  Delete this animal
+</a>
+
+<a href="/animals/<%= @animal["id"] %>/edit">
+  Edit this animal
+</a>
