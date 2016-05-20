@@ -1,0 +1,26 @@
+<h3>This should show all of our animals</h3>
+
+<%#= @all_animals %>
+
+<!-- We want to iterate through all of the animals (these came from the database - the instance variables in main.rb), making sure to save the current animal as the variable animal -->
+<% @all_animals.reverse_each do |animal| %>
+  <h4>
+    <!-- We use ERB delimiters to use Ruby variables -->
+    <%= animal["species"] %>
+  </h4>
+
+  <p>
+    <!-- We use ERB delimiters to use Ruby variables -->
+    <!-- A link to the show page for a single animal -->
+    <a href="/animals/<%= animal["id"] %>">
+      <!-- We use ERB delimiters to use Ruby variables -->
+      <img src="<%= animal["image"] %>">
+    </a>
+  </p>
+
+  <p>
+    <%= animal["description"] %>
+  </p>
+
+  <hr>
+<% end %>

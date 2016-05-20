@@ -1,0 +1,22 @@
+<h3>This should show the form to create an animal</h3>
+
+<!-- We set the method and the URL so that we can use this information over in main.rb -->
+<form method="POST" action="/animals">
+  <p>
+    <label>Name: </label>
+    <!-- Add name attributes so these pieces of information end up in params -->
+    <input type="text" name="species">
+  </p>
+
+  <p>
+    <label>Image: </label>
+    <input type="text" name="image">
+  </p>
+
+  <p>
+    <label>Description: </label>
+    <input type="text" name="description">
+  </p>
+
+  <input type="submit" value="Create animal">
+</form>

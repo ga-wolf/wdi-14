@@ -69,10 +69,20 @@ post "/animals/:id" do
   # We update all of the animals with a set of values
   # But only really the ones with a certain ID (the ID that came from the URL)
     # All params except the id came from the form (based around the name attribute on the inputs)
-  db.execute "UPDATE animals SET species='#{params[:species]}', image = '#{params[:image]}', description = '#{params[:description]}' WHERE id == #{params[:id]};"
+
+  sql = "UPDATE animals SET species='#{params[:species]}', image = '#{params[:image]}', description = '#{params[:description]}' WHERE id == #{params[:id]};"
+
+  puts "\n\n\n"
+  puts sql
+  puts "\n\n\n"
+
+  db.execute sql
+  # puts sql
+
+  # db.execute "UPDATE animals SET species='#{params[:species]}', image = '#{params[:image]}', description = '#{params[:description]}' WHERE id == #{params[:id]};"
 
   # So we redirect to the show page for the animal in question
-  redirect "/animals/#{params[:id]}"
+  redirect "/animals/6"
 end
 
 get '/animals/:id' do

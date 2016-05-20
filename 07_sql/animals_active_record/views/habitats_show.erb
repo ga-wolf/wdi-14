@@ -1,0 +1,13 @@
+<h3><%= @habitat.landscape %></h3>
+<h4><%= @habitat.climate %></h4>
+
+<h5>These are all of the animals that live here:</h5>
+
+<% @habitat.animals.each do |animal| %>
+  <a href="/animals/<%= animal.id %>">
+    <p><%= animal.species %></p>
+  </a>
+<% end %>
+
+<a href="/habitats/<%= @habitat.id %>/delete">Delete this habitat</a>
+<a href="/habitats/<%= @habitat.id %>/edit">Edit this habitat</a>
