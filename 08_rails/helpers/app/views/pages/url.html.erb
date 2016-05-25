@@ -1,0 +1,20 @@
+<h2>This is our URL helpers demo</h2>
+
+<%= link_to "Random", random_path %>
+<!-- <a href="/random">
+  Random
+</a> -->
+
+<%= link_to "Single number path", single_number_path( @single_number ) %>
+<!-- <a href="/number/<%= @single_number %>">
+  Single number path
+</a> -->
+
+<%= link_to "Two numbers path", two_numbers_path( @x, @y ) %>
+<!-- <a href="/number/<%= @x %>/<%= @y %>">
+  Two numbers path
+</a> -->
+
+<!-- get '/random' => 'pages#random', :as => 'random'
+get '/number/:number' => 'pages#single_number', :as => 'single_number'
+get '/number/:x/:y' => 'pages#two_numbers', :as => 'two_numbers' -->
