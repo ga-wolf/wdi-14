@@ -40,6 +40,18 @@ g2 = Genre.create :name => 'Math rock'
 g3 = Genre.create :name => 'Chamber pop'
 puts "Genre count: #{Genre.all.count}"
 
+g1.songs << s1 << s2
+g2.songs << s2 # This creates a new record in the genres_songs table, that will contain the id of the second genre and the id of the second song
+g3.songs << s3
+
+puts "Genre one song count: #{g1.songs.count}"
+puts "Genre two song count: #{g2.songs.count}"
+puts "Genre three song count: #{g3.songs.count}"
+
+puts "Song one genre count: #{s1.genres.count}"
+puts "Song two genre count: #{s2.genres.count}"
+puts "Song three genre count: #{s3.genres.count}"
+
 Artist.destroy_all
 r1 = Artist.create :name => 'June of 44'
 r2 = Artist.create :name => 'The Mercury Program'
@@ -76,3 +88,16 @@ puts "User two mixtape count: #{u2.mixtapes.count}"
 puts "User of first mixtape: #{m1.user.email}"
 puts "User of second mixtape: #{m2.user.email}"
 puts "User of third mixtape: #{m3.user.email}"
+
+# These will all create records in the mixtapes_songs table (it will keep track of the mixtape_id and the song_id)
+m1.songs << s1 << s2 << s3
+m2.songs << s2 << s3
+m3.songs << s1
+
+puts "First mixtape song count: #{m1.songs.count}"
+puts "Second mixtape song count: #{m2.songs.count}"
+puts "Third mixtape song count: #{m3.songs.count}"
+
+puts "First song mixtape count: #{s1.mixtapes.count}"
+puts "Second song mixtape count: #{s2.mixtapes.count}"
+puts "Third song mixtape count: #{s3.mixtapes.count}"
