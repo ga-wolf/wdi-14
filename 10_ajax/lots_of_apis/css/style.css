@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  font-family: monospace;
+  text-align: center;
+}
+
+h2 {
+  border-bottom: 1px solid black;
+}
+
+.col {
+  box-sizing: border-box;
+  float: left;
+  /*width: 33.333333%;*/
+  width: calc(100% / 3);
+  min-height: 200px;
+  border: 1px solid black;
+  padding: 0 5px;
+}
+
+.giphy img {
+  max-width: 500px;
+  width: 80%;
+  display: block;
+  margin: 10px auto;
+}
+
+@media (max-width: 680px) {
+  .col {
+    width: 100%;
+  }
+}
