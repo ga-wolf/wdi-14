@@ -201,62 +201,139 @@ zoo.add( donaldTrump );
 zoo.remove( donaldTrump );
 
 var donaldTrumps = zoo.where({ type: "moron" });
-console.log( donaldTrumps.length );
+// console.log( donaldTrumps.length );
 
 var remainingAnimals = zoo.pluck("type");
-console.log( remainingAnimals );
+// console.log( remainingAnimals );
 
-var Car = Backbone.Model.extend({
-  defaults: {
-    wheels: 4,
-    steeringWheel: true
+var ZooView = Backbone.View.extend({
+  // tagName: "div" - tagName property will create a new element
+  el: "#app", // References an existing element
+
+  events: {
+    'click h1': 'headerClick',
+    'click li': 'accessAnimal'
   },
-  initialize: function () {
-    console.log("new car created");
+
+  accessAnimal: function () {
+    alert("That section of the zoo is closed");
+  },
+
+  headerClick: function (e) {
+    var $clickedElement = $( e.currentTarget );
+    $clickedElement.fadeToggle();
+  },
+
+  render: function () {
+    // You gave this view a collection
+      // If something is added to that collection:
+        // Call this.render
+        // Make sure the keyword this represents the right this
+    // this.collection.on("add", this.render, this);
+
+    // Because we defined the el property, we now have access to this.el (document.getElementById('app')), we also have to the jQuery selected version of it using this.$el ( $("#app") )
+    this.$el.append('<h1>Yay, we just bought a zoo!</h1>');
+    var $ul = $("<ul></ul>");
+
+    // console.log( this.collection );
+    this.collection.each(function (animal) {
+      var $li = $("<li></li>");
+      $li.text( animal.get("type") );
+      // console.log( $li );
+      $ul.append( $li );
+    });
+
+    this.$el.append( $ul );
+  }
+
+});
+
+var Router = Backbone.Router.extend({
+  routes: {
+    '': 'showZoo', // Client side URL (after the hash) is empty, call the showZoo function
+    'secret': 'showSecret'
+  },
+  showSecret: function () {
+    $("#app").html('I put bleach in your coffee');
+    $("#app").append("<a href='#'>Go home</a>");
+  },
+  showZoo: function () {
+    $("#app").html('');
+    var zv = new ZooView({
+      collection : zoo
+    });
+    zv.render();
   }
 });
-var jag = new Car({
-  year: 1964,
-  type: "E-type"
-});
-var galaxy = new Car({
-  year: 1962,
-  type: "Ford Galaxy"
-});
 
-var Dealership = Backbone.Collection.extend({
-  // model, initialize, event handlers
-  model: Car,
+$(document).ready(function () {
 
-  initialize: function () {
-    console.log("A new dealership opened, how exciting");
-    this.on("add", function ( car ) {
-      console.log( "We just received a new car, go sell it." );
-      console.log( car.toJSON() );
-    });
-    this.on("remove", function ( car ) {
-      console.log( "A car was sold or stolen" );
-    });
-  }
-});
-var dealership = new Dealership([ jag, galaxy ]);
-dealership.add({
-  year: 1965,
-  type: "XP"
-});
-console.log( dealership.length );
+  var router = new Router();
+  Backbone.history.start();
 
-var sortedByYear = dealership.sortBy( "year" ); // Array back
-console.log( sortedByYear );
-
-dealership.each(function (car) {
-  console.log( car.get("type") );
 });
 
-console.log( dealership.length );
-dealership.remove( jag );
-console.log( dealership.length );
-// We want an instance of a Dealership collection
-  // Add the jag, { year: 1965, type: "XP" } and the galaxy in there
-  // Try and sort them by year
-  // Then console.log all of their types
+
+
+
+
+
+
+
+
+
+
+// var Car = Backbone.Model.extend({
+//   defaults: {
+//     wheels: 4,
+//     steeringWheel: true
+//   },
+//   initialize: function () {
+//     console.log("new car created");
+//   }
+// });
+// var jag = new Car({
+//   year: 1964,
+//   type: "E-type"
+// });
+// var galaxy = new Car({
+//   year: 1962,
+//   type: "Ford Galaxy"
+// });
+//
+// var Dealership = Backbone.Collection.extend({
+//   // model, initialize, event handlers
+//   model: Car,
+//
+//   initialize: function () {
+//     console.log("A new dealership opened, how exciting");
+//     this.on("add", function ( car ) {
+//       console.log( "We just received a new car, go sell it." );
+//       console.log( car.toJSON() );
+//     });
+//     this.on("remove", function ( car ) {
+//       console.log( "A car was sold or stolen" );
+//     });
+//   }
+// });
+// var dealership = new Dealership([ jag, galaxy ]);
+// dealership.add({
+//   year: 1965,
+//   type: "XP"
+// });
+// console.log( dealership.length );
+//
+// var sortedByYear = dealership.sortBy( "year" ); // Array back
+// console.log( sortedByYear );
+//
+// dealership.each(function (car) {
+//   console.log( car.get("type") );
+// });
+//
+// console.log( dealership.length );
+// dealership.remove( jag );
+// console.log( dealership.length );
+// // We want an instance of a Dealership collection
+//   // Add the jag, { year: 1965, type: "XP" } and the galaxy in there
+//   // Try and sort them by year
+//   // Then console.log all of their types
