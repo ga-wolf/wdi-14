@@ -1,28 +1,23 @@
+// Make sure that an app object exists
+  // Either use the existing app object
+  // Or use a new, empty object
 var app = app || {};
 
+// This AppView should just render the basic template so that all of the other views can be loaded onto the page
 app.AppView = Backbone.View.extend({
-  el: "#main", // Reference an existing element with the ID of main
-
+  el: "#main", // Reference an existing element, in this case the element with the ID of main. This is defined in app/views/secrets/home.html.erb (as are all of the templates)
   render: function () {
-    console.log( "App view should be rendered now" );
+    console.log( "An instance of app.AppView has just been rendered" );
+    // Get the HTML that is inside the element with the ID of appViewTemplate
+      // Defined in app/views/secrets/home.html.erb
     var appViewTemplate = $("#appViewTemplate").html();
-    // Set the HTML of the element with the ID of main to be that appViewTemplate, making sure to use the keyword ` this `
+    // Set this.$el's current HTML to be whatever was in the script tag found above
     this.$el.html( appViewTemplate );
 
+    // After the appView is on the page, we can start loading other views in there
+    // Create a new instance of the app.SecretInputView
     var secretInputView = new app.SecretInputView();
+    // Then render the secretInputView to the page (inside whatever element it defines or references)
     secretInputView.render();
-
-    // Create a new instance of something called the SecretInputView which should be defined in views/SecretInputView.js
-    // Put all of the content from the secretInputViewTemplate onto the page - this should be put in the div with the ID of secretForm
-
-    // Create the file
-    // Make sure app is defined
-    // Create the factory or constructor (extend Backbone.View)
-      // el: "#secretForm"
-      // We will need a render method
-    // Create the instance
-    // Call render on the instance
-
-
   }
 });

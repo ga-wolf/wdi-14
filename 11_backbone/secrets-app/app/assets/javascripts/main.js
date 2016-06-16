@@ -1,49 +1,31 @@
-// var s1 = new app.Secret(); // This will use the default values
-// var s2 = new app.Secret({
-//   content: "I put bleach in your coffee"
-// }); // Will overwrite the default values
-//
-// var secretsCollection = new app.Secrets([
-//   s1,
-//   s2
-// ]);
+// Make sure that an app object exists
+  // Either use the existing app object
+  // Or use a new, empty object
+var app = app || {};
 
-// We can ask for information from the server because we specified a url attribute on the collection
-  // Once that GET request to /secrets is done, call the following function
-// secretsCollection.fetch().done(function () {
-//   console.log( secretsCollection.toJSON() );
-//
-//   // Once all the secrets have been successfully received, find the one that is bleach related, and update it
-//   var bleachSecret = secretsCollection.findWhere({
-//     id: 1
-//   });
-//   bleachSecret.set({
-//     content: "I put bleach in your coffee"
-//   });
-//   bleachSecret.save().done(function () {
-//     console.log( "Bleach secret was saved" );
-//   });
-// });
-
-// Create a new instance of the collection
-  // It will set up the URL so we can fetch information
-  // Add event handlers so that any time a secret is added into the collection, we will represent that on the page
+// Create a new instance of the app.Secrets collection
+//  This is what we will be using to ask for information (making our AJAX requests)
 app.secrets = new app.Secrets();
 
-// Wait until the document is ready
 $(document).ready(function () {
-
+  // Make sure we are on a page that Backbone should be loaded on
+  //  The element with the ID of main is only on our page in app/views/secrets/home.html.erb
+  //  If we are on any other page, it won't continue running the function
+  if ( $("#main").length === 0 ) {
+    return;
+  }
   // Create a new instance of the router
   app.router = new app.AppRouter();
-  // Gets the router to start listening to client side URLs
+  // This will get the instance of app.AppRouter to actually start listening to client-side URLs (the part of the URL that is after the hash sign)
   Backbone.history.start();
-
-  // Wait until the secretsCollection has finished fetching
+  // Make a get request to the URL attribute defined on the app.Secrets constructor
+  //  In this case, this will be making an AJAX GET request, asking for JSON, to /secrets
+  //  Every piece of information that comes back will be saved as an app.Secret model (as specified in the app.Secret constructor)
+  //  This will also fire the add events on this particular instance of the secrets collection
   app.secrets.fetch();
-
-  // Polling
+  // Ask for information from the server every second (make a GET request to /secrets asking for JSON)
+  //  Every new piece of information (every new secret that comes back) will be created as an instance of app.Secret, and will trigger the add event listener defined in the initialize method in the app.Secrets constructor
   window.setInterval(function () {
     app.secrets.fetch();
   }, 1000);
-
 });
