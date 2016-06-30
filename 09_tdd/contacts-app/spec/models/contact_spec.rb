@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id         :integer          not null, primary key
+#  first_name :string
+#  last_name  :string
+#  email      :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
@@ -46,5 +58,9 @@ RSpec.describe Contact, type: :model do
     it "omits contacts who don't match" do
       expect(Contact.by_letter("J")).not_to include(@smith)
     end
+  end
+  it "has three phone numbers" do
+    contact = build(:contact)
+    expect(contact.phones.length).to eq(3)
   end
 end
