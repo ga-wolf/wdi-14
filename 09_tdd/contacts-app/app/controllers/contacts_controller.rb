@@ -1,6 +1,10 @@
 class ContactsController < ApplicationController
   def index
-    @contacts = Contact.all
+    if params[:letter]
+      @contacts = Contact.by_letter params[:letter]
+    else
+      @contacts = Contact.all
+    end
   end
   def show
     # @contact == assigns(:contact)

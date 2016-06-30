@@ -2,16 +2,33 @@ require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
   describe "GET #index" do
-    it "assigns all contacts to @contacts" do
-      contact = create :contact
-      contact_two = create :contact
-      get :index
-      expect(assigns(:contacts)).to match_array([contact, contact_two])
-      expect(assigns(:contacts)).to eq(Contact.all)
+    context "with params[:letter]" do
+      it "populates an array of relevant users and store it in @contacts" do
+        johns = create :contact, last_name: "Johns"
+        jones = create :contact, last_name: "Jones"
+        smith = create :contact, last_name: "Smith"
+
+        get :index, letter: 'J'
+
+        expect(assigns(:contacts)).to eq([johns, jones])
+      end
+      it "renders the contacts/index template" do
+        get :index
+        expect(response).to render_template(:index)
+      end
     end
-    it "renders the contacts/index template" do
-      get :index
-      expect(response).to render_template(:index)
+    context "without params[:letter]" do
+      it "assigns all contacts to @contacts" do
+        contact = create :contact
+        contact_two = create :contact
+        get :index
+        expect(assigns(:contacts)).to match_array([contact, contact_two])
+        expect(assigns(:contacts)).to eq(Contact.all)
+      end
+      it "renders the contacts/index template" do
+        get :index
+        expect(response).to render_template(:index)
+      end
     end
   end
   describe "GET #show" do
