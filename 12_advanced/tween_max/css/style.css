@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20vw;
+  height: 20vh;
+}
