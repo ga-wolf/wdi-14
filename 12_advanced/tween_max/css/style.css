@@ -2,6 +2,7 @@ body {
   margin: 0;
   height: 100vh;
   overflow: hidden;
+  text-align: center;
 }
 
 .controls {
@@ -16,4 +17,13 @@ img {
   left: 0;
   width: 20vw;
   height: 20vh;
+}
+
+h1 {
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
