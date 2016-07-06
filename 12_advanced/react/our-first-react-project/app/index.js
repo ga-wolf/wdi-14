@@ -30,11 +30,31 @@ import ReactDOM from 'react-dom';
 // );
 
 class ShowTodos extends React.Component {
+  constructor() {
+    super(); // inherit everything from React.Component
+    this.state = { // setInitialState life cycle hook
+      loading: true
+    };
+  }
+  componentWillMount() {
+    // We want to wait 500ms, then change this.state.loading = false
+    window.setTimeout(function () {
+      this.setState({
+        loading: false
+      });
+    }.bind(this), 5000);
+  }
   render() {
     let todoItems = this.props.todos.map((todo) => {
       return ( <li key={Math.random()}>{todo}</li> );
     });
-    console.log( todoItems );
+
+    if ( this.state.loading ) {
+      return (
+        <p>Loading...</p>
+      );
+    }
+
     return (
       <ul>
         {todoItems}
@@ -42,6 +62,12 @@ class ShowTodos extends React.Component {
     );
   }
 };
+ShowTodos.propTypes = {
+  todos: React.PropTypes.array.isRequired,
+  num: React.PropTypes.number
+};
+
+
 class TodosContainer extends React.Component {
   render() {
     let todos = [ "First todo", "Second todo", "Third todo" ];
