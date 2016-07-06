@@ -4,7 +4,7 @@ class UserDetails extends Component {
   render() {
     return (
       <div>
-        <h2>{this.props.routeParams.username}</h2>
+        <h3><em>{this.props.routeParams.username}</em></h3>
       </div>
     );
   }

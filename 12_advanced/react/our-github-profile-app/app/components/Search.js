@@ -22,6 +22,7 @@ class Search extends Component {
     console.log( this );
     return (
       <div>
+        <h3><em>Search</em></h3>
         <input
           type="text"
           name="search"

@@ -10,7 +10,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h3>Welcome to our Github app</h3>
+        <h3><em>Welcome to our Github app</em></h3>
         <p>This will show a basic Github profile page</p>
         <Link to="/search">
           <button className="button-primary">Search for a user</button>
