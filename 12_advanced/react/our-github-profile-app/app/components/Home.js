@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 class Home extends Component {
+  pickRandomStudent(e) {
+    const students = ["airwoman", "arimado", "cayliejzm", "cedricamoyal", "danharsanyi", "donnzh", "fbi1714", "jadarling", "jessakang", "mokahontas", "monalisinghi", "more-like-a-puma", "mr-black-8", "onesc", "panza87", "paula-white", "yumidev"];
+    const chosenStudent = students[Math.floor(Math.random()* students.length)];
+
+    this.context.router.push( `/details/${chosenStudent}` );
+  }
   render() {
     return (
       <div>
@@ -10,12 +16,16 @@ class Home extends Component {
           <button className="button-primary">Search for a user</button>
         </Link>
         &nbsp;
-        <button className="button-primary">
-          Pick a random WDi14 student
+        <button
+          className="button-primary" onClick={this.pickRandomStudent.bind(this)}>
+            Pick a random WDi14 student
         </button>
       </div>
     );
   }
+};
+Home.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 export default Home;
