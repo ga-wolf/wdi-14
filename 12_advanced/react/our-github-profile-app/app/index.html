@@ -8,6 +8,16 @@
     body {
       font-family: "Operator Mono", monospace;
     }
+    .appear-enter {
+      transition: opacity 0.5s ease-out;
+      opacity: 0;
+    }
+    .appear-enter.appear-enter-active {
+      opacity: 1;
+    }
+    .appear-leave {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>

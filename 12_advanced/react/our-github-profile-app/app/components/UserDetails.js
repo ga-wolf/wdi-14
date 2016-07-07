@@ -18,6 +18,12 @@ class UserDetailsContainer extends Component {
         user: user
       });
     }.bind(this));
+    GithubHelpers.getUserRepos(username).then(function (req) {
+      const repos = req.data;
+      this.setState({
+        repos: repos
+      });
+    }.bind(this));
   }
   render() {
     return (
@@ -25,7 +31,7 @@ class UserDetailsContainer extends Component {
         <h3><em>{this.props.routeParams.username}</em></h3>
         <UserProfile user={this.state.user} />
         <hr />
-        <UserRepositories />
+        <UserRepositories repos={this.state.repos} />
       </div>
     );
   }
