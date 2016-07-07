@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router';
+
 class Home extends Component {
   pickRandomStudent(e) {
     const students = ["airwoman", "arimado", "cayliejzm", "cedricamoyal", "danharsanyi", "donnzh", "fbi1714", "jadarling", "jessakang", "mokahontas", "monalisinghi", "more-like-a-puma", "mr-black-8", "onesc", "panza87", "paula-white", "yumidev"];
