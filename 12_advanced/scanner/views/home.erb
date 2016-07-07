@@ -1,0 +1,11 @@
+<h2>nmap results: addresses with running web servers</h2>
+
+<h3><%= @hosts.count %> hosts detected</h3>
+
+<% @hosts.each do |h| %>
+  <p>
+    <a href="http://<%= h %>" target="_blank">
+      <%= h %>
+    </a>
+  </p>
+<% end %>
