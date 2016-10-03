@@ -7,9 +7,9 @@ file = File.open( "peoples.txt", "r" )
 all_lines = file.readlines
 p all_lines
 #
-# all_lines.each do |line|
-#   p "The current line's content: #{line}"
-# end
+all_lines.each do |line|
+  p "The current line's content: #{line}"
+end
 
 file.close
 

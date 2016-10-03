@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class UserProfile extends Component {
   render() {
-
     if ( !this.props.user.login ) {
       return (
         <div>Loading...</div>
